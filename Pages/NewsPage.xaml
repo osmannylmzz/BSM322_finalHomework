@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="finalHomework.Pages.NewsPage"
+             Title="Haberler"
+             BackgroundColor="#0F1115">
+
+    <Grid RowDefinitions="Auto,*" Padding="12" RowSpacing="12">
+
+        <!-- Üst kısım: Kategori seçimi -->
+        <Frame Grid.Row="0"
+               Padding="12"
+               BackgroundColor="#161A22"
+               BorderColor="#2A3242"
+               CornerRadius="16"
+               HasShadow="True">
+
+            <VerticalStackLayout Spacing="8">
+                <Label Text="🗂️ Kategori Seçin"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       FontSize="14" />
+
+                <Picker x:Name="CategoryPicker"
+                        Title="Kategori"
+                        TitleColor="#A7B0C0"
+                        TextColor="White"
+                        SelectedIndexChanged="OnCategoryChanged"
+                        BackgroundColor="#1D2430" />
+            </VerticalStackLayout>
+        </Frame>
+
+        <!-- Haber listesi -->
+        <Grid Grid.Row="1">
+
+            <CollectionView x:Name="NewsCollectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10"
+                               Margin="0,6"
+                               BackgroundColor="#161A22"
+                               BorderColor="#2A3242"
+                               CornerRadius="16"
+                               HasShadow="True">
+
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnNewsTapped" />
+                            </Frame.GestureRecognizers>
+
+                            <Grid ColumnDefinitions="90,*" ColumnSpacing="12">
+
+                                <!-- Thumbnail -->
+                                <Frame Grid.Column="0"
+                                       Padding="0"
+                                       CornerRadius="12"
+                                       BackgroundColor="#1D2430"
+                                       BorderColor="#2A3242"
+                                       HeightRequest="64"
+                                       WidthRequest="90"
+                                       HasShadow="False">
+                                    <Image Source="{Binding Thumbnail}"
+                                           Aspect="AspectFill" />
+                                </Frame>
+
+                                <!-- İçerik -->
+                                <VerticalStackLayout Grid.Column="1"
+                                                     Spacing="6"
+                                                     VerticalOptions="Center">
+
+                                    <Label Text="{Binding Title}"
+                                           FontAttributes="Bold"
+                                           FontSize="14"
+                                           TextColor="White"
+                                           LineBreakMode="TailTruncation"
+                                           MaxLines="2" />
+
+                                    <Label Text="{Binding PubDate, StringFormat='🕒 {0}'}"
+                                           FontSize="12"
+                                           TextColor="#A7B0C0" />
+
+                                </VerticalStackLayout>
+
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Loading Overlay -->
+            <Grid x:Name="LoadingOverlay"
+                  IsVisible="False"
+                  BackgroundColor="#80000000">
+                <VerticalStackLayout VerticalOptions="Center"
+                                     HorizontalOptions="Center"
+                                     Spacing="10">
+                    <ActivityIndicator IsRunning="True"
+                                       Color="White"
+                                       HeightRequest="50"
+                                       WidthRequest="50" />
+                    <Label Text="⏳ Haberler yükleniyor..."
+                           TextColor="White"
+                           FontSize="14"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="finalHomework.Pages.RegisterPage"
+             Title="Kayıt"
+             BackgroundColor="#0F1115">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="18" Spacing="16">
+
+            <VerticalStackLayout Spacing="6" Margin="0,6,0,0">
+                <Label Text="📝 Kayıt Ol"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       HorizontalOptions="Center" />
+                <Label Text="🔐 Hesabını oluştur"
+                       FontSize="13"
+                       TextColor="#A7B0C0"
+                       HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+
+            <Frame BackgroundColor="#161A22"
+                   BorderColor="#2A3242"
+                   CornerRadius="16"
+                   Padding="16"
+                   HasShadow="True">
+
+                <VerticalStackLayout Spacing="12">
+
+                    <!-- Username -->
+                    <Frame BackgroundColor="#1D2430" BorderColor="#2A3242" CornerRadius="12" Padding="12">
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                            <Label Text="👤" FontSize="18" VerticalOptions="Center"/>
+                            <Entry x:Name="UsernameEntry"
+                                   Grid.Column="1"
+                                   Placeholder="Kullanıcı adı"
+                                   PlaceholderColor="#A7B0C0"
+                                   TextColor="White"
+                                   BackgroundColor="Transparent"/>
+                        </Grid>
+                    </Frame>
+
+                    <!-- Email -->
+                    <Frame BackgroundColor="#1D2430" BorderColor="#2A3242" CornerRadius="12" Padding="12">
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                            <Label Text="📧" FontSize="18" VerticalOptions="Center"/>
+                            <Entry x:Name="EmailEntry"
+                                   Grid.Column="1"
+                                   Placeholder="Email"
+                                   PlaceholderColor="#A7B0C0"
+                                   Keyboard="Email"
+                                   TextColor="White"
+                                   BackgroundColor="Transparent"/>
+                        </Grid>
+                    </Frame>
+
+                    <!-- Password -->
+                    <Frame BackgroundColor="#1D2430" BorderColor="#2A3242" CornerRadius="12" Padding="12">
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                            <Label Text="🔒" FontSize="18" VerticalOptions="Center"/>
+                            <Entry x:Name="PasswordEntry"
+                                   Grid.Column="1"
+                                   Placeholder="Şifre"
+                                   PlaceholderColor="#A7B0C0"
+                                   IsPassword="True"
+                                   TextColor="White"
+                                   BackgroundColor="Transparent"/>
+                        </Grid>
+                    </Frame>
+
+                    <Button Text="✅ Kaydol"
+                            Clicked="OnRegisterClicked"
+                            BackgroundColor="#7C5CFC"
+                            TextColor="White"
+                            CornerRadius="12"
+                            HeightRequest="48"/>
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

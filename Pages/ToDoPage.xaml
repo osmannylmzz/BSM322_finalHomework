@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="finalHomework.Pages.ToDoPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Todo"
+    BackgroundColor="#0F1115">
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto" Padding="16">
+
+        <!-- Durum -->
+        <HorizontalStackLayout Grid.Row="0" Spacing="10" VerticalOptions="Center">
+            <ActivityIndicator x:Name="activityIndicator"
+                               IsVisible="False"
+                               IsRunning="False"
+                               VerticalOptions="Center"
+                               Color="White"/>
+            <Label x:Name="statusLabel"
+                   VerticalOptions="Center"
+                   TextColor="#FF6B6B"/>
+        </HorizontalStackLayout>
+
+        <!-- Add / Edit Panel -->
+        <Frame x:Name="AddPanel"
+               Grid.Row="1"
+               Margin="0,12,0,12"
+               Padding="14"
+               CornerRadius="16"
+               BackgroundColor="#161A22"
+               BorderColor="#2A3242"
+               HasShadow="True">
+
+            <VerticalStackLayout Spacing="10">
+
+                <!-- Düzenleme modu etiketi -->
+                <Label x:Name="EditModeLabel"
+                       Text="✏️ Düzenleme Modu"
+                       IsVisible="False"
+                       TextColor="#A7B0C0"
+                       FontAttributes="Bold" />
+
+                <Frame BackgroundColor="#1D2430" BorderColor="#2A3242" CornerRadius="12" Padding="12">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                        <Label Text="📝" FontSize="18" VerticalOptions="Center"/>
+                        <Entry x:Name="TitleEntry"
+                               Grid.Column="1"
+                               Placeholder="Başlık"
+                               PlaceholderColor="#A7B0C0"
+                               TextColor="White"
+                               BackgroundColor="Transparent"/>
+                    </Grid>
+                </Frame>
+
+                <Frame BackgroundColor="#1D2430" BorderColor="#2A3242" CornerRadius="12" Padding="12">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                        <Label Text="📌" FontSize="18" VerticalOptions="Start"/>
+                        <Editor x:Name="DetailEntry"
+                                Grid.Column="1"
+                                Placeholder="Açıklama"
+                                AutoSize="TextChanges"
+                                HeightRequest="90"
+                                TextColor="White"
+                                BackgroundColor="Transparent"/>
+                    </Grid>
+                </Frame>
+
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                    <DatePicker x:Name="TodoDatePicker" Grid.Column="0"/>
+                    <TimePicker x:Name="TodoTimePicker" Grid.Column="1"/>
+                </Grid>
+
+                <HorizontalStackLayout Spacing="10">
+                    <Button x:Name="SaveButton"
+                            Text="➕ Ekle"
+                            Clicked="OnAddClicked"
+                            BackgroundColor="#7C5CFC"
+                            TextColor="White"
+                            CornerRadius="12"
+                            HeightRequest="44"
+                            Padding="14,8"
+                            HorizontalOptions="FillAndExpand"/>
+
+                    <Button x:Name="CancelEditButton"
+                            Text="✖ İptal"
+                            Clicked="OnCancelEditClicked"
+                            IsVisible="False"
+                            BackgroundColor="Transparent"
+                            TextColor="#FF6B6B"
+                            BorderColor="#FF6B6B"
+                            BorderWidth="1"
+                            CornerRadius="12"
+                            HeightRequest="44"
+                            Padding="14,8"
+                            HorizontalOptions="FillAndExpand"/>
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+        </Frame>
+
+        <!-- Login uyarısı -->
+        <Label x:Name="LoginWarningLabel"
+               Grid.Row="1"
+               Text="⚠️ Giriş yapmalısınız."
+               IsVisible="False"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               TextColor="#FF6B6B"
+               FontAttributes="Bold" />
+
+        <!-- Todo listesi -->
+        <CollectionView x:Name="TodosCollectionView" Grid.Row="2">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="12"
+                           Margin="0,6"
+                           CornerRadius="16"
+                           HasShadow="True"
+                           BackgroundColor="#161A22"
+                           BorderColor="#2A3242">
+
+                        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="10">
+
+                            <Label Grid.Row="0" Grid.Column="0"
+                                   Text="{Binding Title}"
+                                   FontAttributes="Bold"
+                                   TextColor="White"
+                                   FontSize="14"/>
+
+                            <Label Grid.Row="1" Grid.Column="0"
+                                   Text="{Binding Detail}"
+                                   LineBreakMode="TailTruncation"
+                                   TextColor="#A7B0C0"
+                                   FontSize="12"/>
+
+                            <VerticalStackLayout Grid.RowSpan="2" Grid.Column="1"
+                                                 HorizontalOptions="End"
+                                                 VerticalOptions="Center"
+                                                 Spacing="8">
+
+                                <CheckBox IsChecked="{Binding IsDone}"
+                                          CheckedChanged="OnDoneChanged"/>
+
+                                <HorizontalStackLayout Spacing="6" HorizontalOptions="End">
+                                    <Button Text="✏️"
+                                            Clicked="OnEditClicked"
+                                            BackgroundColor="Transparent"
+                                            TextColor="#A7B0C0"/>
+
+                                    <Button Text="🗑️"
+                                            Clicked="OnDeleteClicked"
+                                            BackgroundColor="Transparent"
+                                            TextColor="#FF6B6B"/>
+                                </HorizontalStackLayout>
+
+                            </VerticalStackLayout>
+
+                        </Grid>
+
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label Grid.Row="3"
+               Text="© Uygulama"
+               HorizontalOptions="Center"
+               Margin="0,12,0,0"
+               TextColor="#A7B0C0" />
+
+    </Grid>
+</ContentPage>

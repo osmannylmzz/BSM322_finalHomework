@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="finalHomework.Pages.SettingsPage"
+             Title="Ayarlar"
+             BackgroundColor="#0F1115">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="16">
+
+            <!-- Tema Ayarları -->
+            <Frame Padding="16"
+                   BackgroundColor="#161A22"
+                   BorderColor="#2A3242"
+                   CornerRadius="16"
+                   HasShadow="True">
+
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="🎛️ Tema Ayarları"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+
+                    <BoxView HeightRequest="1" Color="#2A3242" />
+
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Grid.Column="0" VerticalOptions="Center" Spacing="2">
+                            <Label Text="🌙 Koyu Tema"
+                                   FontSize="16"
+                                   TextColor="White" />
+                            <Label Text="Uygulamayı koyu modda kullan"
+                                   FontSize="12"
+                                   TextColor="#A7B0C0" />
+                        </VerticalStackLayout>
+
+                        <Switch x:Name="DarkModeSwitch"
+                                Grid.Column="1"
+                                Toggled="OnDarkModeToggled"
+                                VerticalOptions="Center" />
+                    </Grid>
+
+                    <!-- Tema Önizleme -->
+                    <Frame x:Name="ThemePreviewFrame"
+                           Padding="12"
+                           CornerRadius="14"
+                           BackgroundColor="#1D2430"
+                           BorderColor="#2A3242"
+                           Margin="0,10,0,0">
+
+                        <VerticalStackLayout Spacing="6">
+                            <Label x:Name="ThemePreviewTitle"
+                                   Text="👀 Tema Önizleme"
+                                   FontAttributes="Bold"
+                                   TextColor="White" />
+                            <Label x:Name="ThemePreviewText"
+                                   Text="Bu metin seçilen temaya göre görünür."
+                                   FontSize="13"
+                                   TextColor="#A7B0C0" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Uygulama Bilgileri -->
+            <Frame Padding="16"
+                   BackgroundColor="#161A22"
+                   BorderColor="#2A3242"
+                   CornerRadius="16"
+                   HasShadow="True">
+
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="ℹ️ Uygulama Bilgileri"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+
+                    <BoxView HeightRequest="1" Color="#2A3242" />
+
+                    <Label Text="📦 Final Homework App"
+                           FontSize="14"
+                           TextColor="White" />
+                    <Label Text="🏷️ Versiyon: 1.0.0"
+                           FontSize="12"
+                           TextColor="#A7B0C0" />
+                    <Label Text="🧩 .NET MAUI ile geliştirildi"
+                           FontSize="12"
+                           TextColor="#A7B0C0" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Çıkış Butonu -->
+            <Button Text="🚪 Çıkış Yap"
+                    Clicked="OnLogoutClicked"
+                    BackgroundColor="#E74C3C"
+                    TextColor="White"
+                    CornerRadius="12"
+                    HeightRequest="48"
+                    Margin="0,6,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="finalHomework.Pages.NewsDetailPage"
+             Title="Haber"
+             BackgroundColor="#0F1115">
+
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="📤 Paylaş" Order="Primary" Priority="0" Clicked="OnShareClicked" />
+		<ToolbarItem Text="🌐 Tarayıcıda Aç" Order="Primary" Priority="1" Clicked="OnOpenLinkClicked" />
+	</ContentPage.ToolbarItems>
+
+	<Grid RowDefinitions="Auto,*" Padding="16" RowSpacing="12">
+
+		<!-- ÜST BİLGİ KARTI -->
+		<Frame Grid.Row="0"
+               BackgroundColor="#161A22"
+               BorderColor="#2A3242"
+               CornerRadius="16"
+               Padding="14"
+               HasShadow="True">
+
+			<VerticalStackLayout Spacing="10">
+
+				<HorizontalStackLayout Spacing="10">
+					<!-- Kategori chip -->
+					<Frame Padding="8,4"
+                           BackgroundColor="#7C5CFC"
+                           CornerRadius="10"
+                           BorderColor="Transparent">
+						<HorizontalStackLayout Spacing="6">
+							<Label Text="🏷️" TextColor="White" FontSize="11" VerticalOptions="Center"/>
+							<Label x:Name="CategoryLabel" TextColor="White" FontSize="11" VerticalOptions="Center"/>
+						</HorizontalStackLayout>
+					</Frame>
+
+					<!-- Tarih -->
+					<Label x:Name="DateLabel"
+                           TextColor="#A7B0C0"
+                           FontSize="12"
+                           VerticalOptions="Center"
+                           Text="🕒 " />
+				</HorizontalStackLayout>
+
+				<!-- Başlık -->
+				<Label x:Name="TitleLabel"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       LineBreakMode="WordWrap" />
+
+			</VerticalStackLayout>
+		</Frame>
+
+		<!-- WEBVIEW KART -->
+		<Frame Grid.Row="1"
+               BackgroundColor="#161A22"
+               BorderColor="#2A3242"
+               CornerRadius="16"
+               Padding="0"
+               HasShadow="True">
+
+			<Grid>
+				<WebView x:Name="ArticleWebView"
+                         Navigating="OnWebNavigating"
+                         Navigated="OnWebNavigated" />
+
+				<!-- Loading overlay -->
+				<Grid x:Name="LoadingOverlay"
+                      IsVisible="False"
+                      BackgroundColor="#80000000">
+					<VerticalStackLayout VerticalOptions="Center"
+                                         HorizontalOptions="Center"
+                                         Spacing="10">
+						<ActivityIndicator IsRunning="True" HeightRequest="48" WidthRequest="48"/>
+						<Label Text="⏳ Yükleniyor..."
+                               TextColor="White"
+                               FontSize="14"/>
+					</VerticalStackLayout>
+				</Grid>
+			</Grid>
+
+		</Frame>
+
+	</Grid>
+</ContentPage>

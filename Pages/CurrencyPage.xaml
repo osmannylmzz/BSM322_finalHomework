@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="finalHomework.Pages.CurrencyPage"
+             Title="Kurlar"
+             BackgroundColor="#0F1115">
+
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout Padding="16" Spacing="12">
+
+                <!-- Başlık -->
+                <Label FontSize="24"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       TextColor="White"
+                       Text="💱 Döviz ve Altın Kurları" />
+
+                <!-- Alt başlık -->
+                <Label FontSize="13"
+                       HorizontalOptions="Center"
+                       TextColor="#A7B0C0"
+                       Text="🔄 Güncel veriler — Yenile ile güncelle" />
+
+                <!-- Yenile butonu -->
+                <Button x:Name="RefreshButton"
+                        Text="🔃 Yenile"
+                        Clicked="OnRefreshClicked"
+                        HorizontalOptions="Center"
+                        BackgroundColor="#7C5CFC"
+                        TextColor="White"
+                        CornerRadius="12"
+                        Padding="18,10"
+                        Margin="0,6,0,10" />
+
+                <!-- Liste -->
+                <CollectionView x:Name="CurrencyCollectionView">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="12"
+                                   Margin="0,6"
+                                   CornerRadius="12"
+                                   BackgroundColor="#161A22"
+                                   BorderColor="#2A3242"
+                                   HasShadow="True">
+
+                                <Grid ColumnDefinitions="Auto,*,Auto"
+                                      RowDefinitions="Auto,Auto"
+                                      ColumnSpacing="12">
+
+                                    <!-- Kod -->
+                                    <Label Text="{Binding Code}"
+                                           FontAttributes="Bold"
+                                           FontSize="16"
+                                           TextColor="White"
+                                           VerticalOptions="Center"
+                                           Grid.Row="0" Grid.Column="0" />
+
+                                    <!-- İsim -->
+                                    <Label Text="{Binding Name}"
+                                           FontSize="14"
+                                           TextColor="#A7B0C0"
+                                           VerticalOptions="Center"
+                                           Grid.Row="0" Grid.Column="1" />
+
+                                    <!-- Değişim -->
+                                    <Label Text="{Binding Change, StringFormat='📈 %{0}'}"
+                                           FontSize="12"
+                                           TextColor="#A7B0C0"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="End"
+                                           Grid.Row="0" Grid.Column="2" />
+
+                                    <!-- Alış / Satış -->
+                                    <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                                          ColumnDefinitions="*,*"
+                                          ColumnSpacing="12"
+                                          Margin="0,8,0,0">
+
+                                        <!-- ALIŞ -->
+                                        <Frame Grid.Column="0"
+                                               Padding="10"
+                                               CornerRadius="10"
+                                               BackgroundColor="#1D2430"
+                                               BorderColor="#2A3242">
+                                            <Label FontSize="13" TextColor="White">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="🟢 Alış: " FontAttributes="Bold" />
+                                                        <Span Text="{Binding Buying}" />
+                                                        <Span Text=" ₺" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </Frame>
+
+                                        <!-- SATIŞ -->
+                                        <Frame Grid.Column="1"
+                                               Padding="10"
+                                               CornerRadius="10"
+                                               BackgroundColor="#1D2430"
+                                               BorderColor="#2A3242">
+                                            <Label FontSize="13" TextColor="White">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="🔴 Satış: " FontAttributes="Bold" />
+                                                        <Span Text="{Binding Selling}" />
+                                                        <Span Text=" ₺" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </Frame>
+
+                                    </Grid>
+
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Loading Overlay -->
+        <Grid x:Name="LoadingOverlay"
+              IsVisible="False"
+              BackgroundColor="#80000000">
+            <VerticalStackLayout VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 Spacing="10">
+                <ActivityIndicator x:Name="LoadingIndicator"
+                                   IsRunning="True"
+                                   Color="White"
+                                   HeightRequest="50"
+                                   WidthRequest="50" />
+                <Label Text="⏳ Kurlar yükleniyor..."
+                       TextColor="White"
+                       FontSize="14"
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="finalHomework.Pages.HomePage"
+             BackgroundColor="#0F1115"
+             Title="Ana Sayfa">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24,28"
+                             Spacing="18"
+                             BackgroundColor="#0F1115">
+
+            <!-- Profil kartı -->
+            <Frame BackgroundColor="#161A22"
+                   BorderColor="#2A3242"
+                   CornerRadius="16"
+                   Padding="16"
+                   HasShadow="True">
+
+                <VerticalStackLayout Spacing="14">
+
+                    <!-- Profil görsel -->
+                    <Border BackgroundColor="#1D2430"
+                            HeightRequest="220"
+                            Stroke="#2A3242"
+                            StrokeShape="RoundRectangle 16"
+                            StrokeThickness="2">
+                        <Image Aspect="AspectFit" Source="profil.jpeg"/>
+                    </Border>
+
+                    <!-- İsim -->
+                    <Label Text="👤 Osman Yılmaz"
+                           HorizontalOptions="Center"
+                           FontSize="26"
+                           FontAttributes="Bold"
+                           TextColor="White"/>
+
+                    <!-- Okul -->
+                    <Label Text="🎓 Bartın Üniversitesi"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           FontSize="18"
+                           TextColor="#A7B0C0"/>
+
+                    <Label Text="💻 Bilgisayar Mühendisliği"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           FontSize="18"
+                           TextColor="#A7B0C0"/>
+
+                    <!-- Ödev -->
+                    <Frame BackgroundColor="#7C5CFC"
+                           CornerRadius="12"
+                           Padding="12"
+                           HorizontalOptions="Center">
+                        <Label Text="📌 ÖDEV-3"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="White"
+                               HorizontalOptions="Center"/>
+                    </Frame>
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
